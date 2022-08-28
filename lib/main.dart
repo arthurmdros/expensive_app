@@ -50,50 +50,77 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: AppBar(
           title: Text('Despesas pessoais'),
         ),
-        body:
-            Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-          Container(
-            width: double.infinity,
-            child: const Card(
-              child: Text('CHART!'),
-            ),
-          ),
-          Column(
-            children: transactions.map((tx) {
-              return Card(
-                  child: Row(
-                children: [
-                  Container(
-                      margin: const EdgeInsets.symmetric(
-                          vertical: 10, horizontal: 15),
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.purple, width: 2)),
-                      padding: const EdgeInsets.all(10),
-                      child: Text(
-                        'R\$ ${tx.amount}',
-                        style: const TextStyle(
-                            fontSize: 20,
-                            color: Colors.purple,
-                            fontWeight: FontWeight.bold),
-                      )),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+        body: Column(
+            // mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Container(
+                width: double.infinity,
+                child: const Card(
+                  child: Text('CHART!'),
+                  color: Colors.blue,
+                  elevation: 5,
+                ),
+              ),
+              Card(
+                elevation: 5,
+                child: Container(
+                  padding: EdgeInsets.all(15),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      Text(
-                        tx.title as String,
-                        style: const TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 16),
-                      ),
-                      Text(
-                        DateFormat('dd/MM/yyyy').format(tx.date!),
-                        style: const TextStyle(color: Colors.grey),
+                    TextField(
+                      decoration: InputDecoration(labelText: 'Despesa'),
+                    ),
+                    TextField(decoration: InputDecoration(labelText: 'Valor')),
+                    ElevatedButton(
+                        onPressed: () {},
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.white),
+                        child: Text(
+                          'Salvar',
+                          style: TextStyle(color: Colors.purple),
+                        ))
+                  ]),
+                ),
+              ),
+              Column(
+                children: transactions.map((tx) {
+                  return Card(
+                      child: Row(
+                    children: [
+                      Container(
+                          margin: const EdgeInsets.symmetric(
+                              vertical: 10, horizontal: 15),
+                          decoration: BoxDecoration(
+                              border:
+                                  Border.all(color: Colors.purple, width: 2)),
+                          padding: const EdgeInsets.all(10),
+                          child: Text(
+                            'R\$ ${tx.amount}',
+                            style: const TextStyle(
+                                fontSize: 20,
+                                color: Colors.purple,
+                                fontWeight: FontWeight.bold),
+                          )),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            tx.title as String,
+                            style: const TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 16),
+                          ),
+                          Text(
+                            DateFormat('dd/MM/yyyy').format(tx.date!),
+                            style: const TextStyle(color: Colors.grey),
+                          )
+                        ],
                       )
                     ],
-                  )
-                ],
-              ));
-            }).toList(),
-          )
-        ]));
+                  ));
+                }).toList(),
+              )
+            ]));
   }
 }
