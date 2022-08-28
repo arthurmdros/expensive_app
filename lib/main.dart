@@ -44,6 +44,14 @@ class _MyHomePageState extends State<MyHomePage> {
       date: DateTime.now(),
     )
   ];
+
+  // String titleInput = '';
+  // String amountInput = '';
+
+  // THERE IS ANOTHER WAY TO GET VALUE OF TEXTFIELD INPUT
+  final titleCrontoller = TextEditingController() ;
+  final amountController = TextEditingController() ;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,10 +79,19 @@ class _MyHomePageState extends State<MyHomePage> {
                     children: [
                     TextField(
                       decoration: InputDecoration(labelText: 'Despesa'),
+                      controller: titleCrontoller,
+                      // onChanged: (value) => titleInput = value
                     ),
-                    TextField(decoration: InputDecoration(labelText: 'Valor')),
+                    TextField(
+                      decoration: InputDecoration(labelText: 'Valor'),
+                      controller: amountController,
+                      // onChanged: (value) => amountInput = value
+                    ),
                     ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          print(titleCrontoller.text);
+                          print(amountController.text);
+                        },
                         style: ElevatedButton.styleFrom(
                           primary: Colors.white),
                         child: Text(
