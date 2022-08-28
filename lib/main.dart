@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
-import './transaction.dart';
+import './views/user_transactions.dart';
 
 void main() {
   runApp(const MyApp());
@@ -30,27 +29,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final List<Transaction> transactions = [
-    Transaction(
-      id: 't1',
-      title: 'Mesa nova',
-      amount: 239,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: 't2',
-      title: 'Mousepad gamer',
-      amount: 35,
-      date: DateTime.now(),
-    )
-  ];
-
-  // String titleInput = '';
-  // String amountInput = '';
-
-  // THERE IS ANOTHER WAY TO GET VALUE OF TEXTFIELD INPUT
-  final titleCrontoller = TextEditingController() ;
-  final amountController = TextEditingController() ;
 
   @override
   Widget build(BuildContext context) {
@@ -70,74 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   elevation: 5,
                 ),
               ),
-              Card(
-                elevation: 5,
-                child: Container(
-                  padding: EdgeInsets.all(15),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                    TextField(
-                      decoration: InputDecoration(labelText: 'Despesa'),
-                      controller: titleCrontoller,
-                      // onChanged: (value) => titleInput = value
-                    ),
-                    TextField(
-                      decoration: InputDecoration(labelText: 'Valor'),
-                      controller: amountController,
-                      // onChanged: (value) => amountInput = value
-                    ),
-                    ElevatedButton(
-                        onPressed: () {
-                          print(titleCrontoller.text);
-                          print(amountController.text);
-                        },
-                        style: ElevatedButton.styleFrom(
-                          primary: Colors.white),
-                        child: Text(
-                          'Salvar',
-                          style: TextStyle(color: Colors.purple),
-                        ))
-                  ]),
-                ),
-              ),
-              Column(
-                children: transactions.map((tx) {
-                  return Card(
-                      child: Row(
-                    children: [
-                      Container(
-                          margin: const EdgeInsets.symmetric(
-                              vertical: 10, horizontal: 15),
-                          decoration: BoxDecoration(
-                              border:
-                                  Border.all(color: Colors.purple, width: 2)),
-                          padding: const EdgeInsets.all(10),
-                          child: Text(
-                            'R\$ ${tx.amount}',
-                            style: const TextStyle(
-                                fontSize: 20,
-                                color: Colors.purple,
-                                fontWeight: FontWeight.bold),
-                          )),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            tx.title as String,
-                            style: const TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 16),
-                          ),
-                          Text(
-                            DateFormat('dd/MM/yyyy').format(tx.date!),
-                            style: const TextStyle(color: Colors.grey),
-                          )
-                        ],
-                      )
-                    ],
-                  ));
-                }).toList(),
-              )
+              UserTransactions(),
             ]));
   }
 }
