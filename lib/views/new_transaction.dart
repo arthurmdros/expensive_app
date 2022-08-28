@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 
 class NewTransaction extends StatelessWidget {
-  NewTransaction({Key? key}) : super(key: key);
-
-
   // String titleInput = '';
   // String amountInput = '';
 
   // THERE IS ANOTHER WAY TO GET VALUE OF TEXTFIELD INPUT
   final _titleCrontoller = TextEditingController();
   final _amountController = TextEditingController();
+
+  final Function callsAddTransaction;
+
+  NewTransaction(this.callsAddTransaction);
 
   @override
   Widget build(BuildContext context) {
@@ -30,8 +31,7 @@ class NewTransaction extends StatelessWidget {
           ),
           ElevatedButton(
               onPressed: () {
-                print(_titleCrontoller.text);
-                print(_amountController.text);
+                callsAddTransaction(_titleCrontoller.text, double.parse(_amountController.text.toString()));
               },
               style: ElevatedButton.styleFrom(primary: Colors.white),
               child: Text(
