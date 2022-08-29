@@ -12,6 +12,16 @@ class NewTransaction extends StatelessWidget {
 
   NewTransaction(this.callsAddTransaction);
 
+  void submitData(){
+    final enteredTitle = _titleCrontoller.text;
+    final enteredAmount =  double.parse(_amountController.text.toString());
+    if(enteredTitle.isEmpty || enteredAmount <= 0){
+      return;
+    } 
+
+    callsAddTransaction(enteredTitle, enteredAmount);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -22,17 +32,18 @@ class NewTransaction extends StatelessWidget {
           TextField(
             decoration: InputDecoration(labelText: 'Despesa'),
             controller: _titleCrontoller,
+            onSubmitted: (_) => submitData(),
             // onChanged: (value) => titleInput = value
           ),
           TextField(
             decoration: InputDecoration(labelText: 'Valor'),
             controller: _amountController,
+            keyboardType: TextInputType.numberWithOptions(decimal: true),
+            onSubmitted: (_) => submitData(),
             // onChanged: (value) => amountInput = value
           ),
           ElevatedButton(
-              onPressed: () {
-                callsAddTransaction(_titleCrontoller.text, double.parse(_amountController.text.toString()));
-              },
+              onPressed: submitData,
               style: ElevatedButton.styleFrom(primary: Colors.white),
               child: Text(
                 'Salvar',
