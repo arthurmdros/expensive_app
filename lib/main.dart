@@ -3,11 +3,10 @@ import 'dart:math';
 
 import 'package:crypto/crypto.dart';
 import 'package:flutter/material.dart';
-import './models/transaction.dart';
-import 'package:flutter/material.dart';
 
-import './views/transaction_list.dart';
+import './models/transaction.dart';
 import './views/new_transaction.dart';
+import './views/transaction_list.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,9 +19,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Despesas pessoais',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.blueGrey,
+        accentColor: Colors.black45
       ),
       home: MyHomePage(),
     );
