@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 
-class NewTransaction extends StatelessWidget {
-  // String titleInput = '';
-  // String amountInput = '';
-
-  // THERE IS ANOTHER WAY TO GET VALUE OF TEXTFIELD INPUT
-  final _titleCrontoller = TextEditingController();
-  final _amountController = TextEditingController();
-
+class NewTransaction extends StatefulWidget {
   final Function callsAddTransaction;
 
   NewTransaction(this.callsAddTransaction);
+
+  @override
+  State<NewTransaction> createState() => _NewTransactionState();
+}
+
+class _NewTransactionState extends State<NewTransaction> {
+  // String titleInput = '';
+  final _titleCrontoller = TextEditingController();
+
+  final _amountController = TextEditingController();
 
   void submitData(){
     final enteredTitle = _titleCrontoller.text;
@@ -19,7 +22,9 @@ class NewTransaction extends StatelessWidget {
       return;
     } 
 
-    callsAddTransaction(enteredTitle, enteredAmount);
+    widget.callsAddTransaction(enteredTitle, enteredAmount);
+
+    Navigator.of(context).pop();
   }
 
   @override
