@@ -21,9 +21,16 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Despesas pessoais',
       theme: ThemeData(
-        primarySwatch: Colors.blueGrey,
-        accentColor: Colors.black45
-      ),
+          primarySwatch: Colors.blueGrey,
+          accentColor: Colors.black45,
+          fontFamily: 'Quicksand',
+          textTheme: ThemeData.light().textTheme.copyWith(
+              titleMedium: const TextStyle(
+                  fontFamily: 'OpenSans',
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold)),
+          appBarTheme: const AppBarTheme(
+              titleTextStyle: TextStyle(fontFamily: 'OpenSans', fontSize: 20))),
       home: MyHomePage(),
     );
   }
@@ -36,18 +43,18 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final List<Transaction> _userTransactions = [
-    Transaction(
-      id: 't1',
-      title: 'Mesa nova',
-      amount: 239,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: 't2',
-      title: 'Mousepad gamer',
-      amount: 35,
-      date: DateTime.now(),
-    )
+    // Transaction(
+    //   id: 't1',
+    //   title: 'Mesa nova',
+    //   amount: 239,
+    //   date: DateTime.now(),
+    // ),
+    // Transaction(
+    //   id: 't2',
+    //   title: 'Mousepad gamer',
+    //   amount: 35,
+    //   date: DateTime.now(),
+    // )
   ];
 
   void _addNewTransaction(String txTitle, double txAmount) {
