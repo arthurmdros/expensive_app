@@ -33,39 +33,25 @@ class TransactionList extends StatelessWidget {
             : ListView.builder(
                 itemBuilder: (context, index) {
                   return Card(
-                      child: Row(
-                    children: [
-                      Container(
-                          margin: const EdgeInsets.symmetric(
-                              vertical: 10, horizontal: 15),
-                          decoration: BoxDecoration(
-                              border: Border.all(
-                                  color: Theme.of(context).primaryColorDark,
-                                  width: 2)),
-                          padding: const EdgeInsets.all(10),
-                          child: Text(
-                            'R\$ ${transactions[index].amount!.toStringAsFixed(2)}',
-                            style: TextStyle(
-                                fontSize: 20,
-                                color: Theme.of(context).primaryColorDark,
-                                fontWeight: FontWeight.bold),
-                          )),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(transactions[index].title as String,
-                              style: Theme.of(context).textTheme.titleMedium
-                              // const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                              ),
-                          Text(
-                            DateFormat('dd/MM/yyyy')
-                                .format(transactions[index].date!),
-                            style: const TextStyle(color: Colors.grey),
-                          )
-                        ],
-                      )
-                    ],
-                  ));
+                    elevation: 5,
+                    margin: EdgeInsets.symmetric(vertical: 8, horizontal: 5),
+                    child: ListTile(
+                      leading: CircleAvatar(
+                        radius: 30,
+                        child: Padding(
+                          padding: EdgeInsets.all(6),
+                          child: FittedBox(child: Text('R\$${transactions[index].amount}'))),
+                      ),
+                      title: Text(
+                        transactions[index].title as String,
+                        style: Theme.of(context).textTheme.titleMedium
+                      ),
+                      subtitle: Text(
+                         DateFormat('dd/MM/yyyy')
+                                  .format(transactions[index].date!)
+                      ),
+                    ),
+                  );
                 },
                 itemCount: transactions.length,
               ));
