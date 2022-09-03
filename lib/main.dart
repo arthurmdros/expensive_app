@@ -33,6 +33,10 @@ class MyApp extends StatelessWidget {
           accentColor: Colors.black45,
           fontFamily: 'Quicksand',
           textTheme: ThemeData.light().textTheme.copyWith(
+              titleSmall: const TextStyle(
+                  fontFamily: 'OpenSans',
+                  fontSize: 13,
+                  fontWeight: FontWeight.normal),
               titleMedium: const TextStyle(
                   fontFamily: 'OpenSans',
                   fontSize: 18,
