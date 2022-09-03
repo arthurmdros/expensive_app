@@ -79,7 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
     }).toList();
   }
 
-  void _addNewTransaction(String txTitle, double txAmount) {
+  void _addNewTransaction(String txTitle, double txAmount, DateTime txDate) {
     var random = Random.secure();
 
     var valueId = utf8.encode(random.nextInt(1000000).toString());
@@ -88,7 +88,7 @@ class _MyHomePageState extends State<MyHomePage> {
         id: sha256.convert(valueId).toString(),
         title: txTitle,
         amount: txAmount,
-        date: DateTime.now());
+        date: txDate);
 
     setState(() {
       _userTransactions.add(newTx);
