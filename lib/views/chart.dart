@@ -25,7 +25,7 @@ class Chart extends StatelessWidget {
         'dia': DateFormat.E('pt_BR').format(weekDay).toUpperCase(),
         'despesa': totalSum
       };
-    });
+    }).reversed.toList();
   }
 
   double get totalSpending {
