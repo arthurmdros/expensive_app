@@ -15,16 +15,24 @@ class _NewTransactionState extends State<NewTransaction> {
 
   final _amountController = TextEditingController();
 
-  void submitData(){
+  void submitData() {
     final enteredTitle = _titleCrontoller.text;
-    final enteredAmount =  double.parse(_amountController.text.toString());
-    if(enteredTitle.isEmpty || enteredAmount <= 0){
+    final enteredAmount = double.parse(_amountController.text.toString());
+    if (enteredTitle.isEmpty || enteredAmount <= 0) {
       return;
-    } 
+    }
 
     widget.callsAddTransaction(enteredTitle, enteredAmount);
 
     Navigator.of(context).pop();
+  }
+
+  void _presentDatePicker() {
+    showDatePicker(
+        context: context,
+        initialDate: DateTime.now(),
+        firstDate: DateTime.now(),
+        lastDate: DateTime(2025));
   }
 
   @override
@@ -47,12 +55,27 @@ class _NewTransactionState extends State<NewTransaction> {
             onSubmitted: (_) => submitData(),
             // onChanged: (value) => amountInput = value
           ),
+          Row(
+            children: [
+              Text(
+                'Nenhuma data selecionada!',
+                style: Theme.of(context).textTheme.titleSmall,
+              ),
+              TextButton(
+                style: ElevatedButton.styleFrom(primary: Colors.white),
+                onPressed: _presentDatePicker,
+                child: Icon(Icons.calendar_today,
+                    color: Theme.of(context).primaryColor),
+              )
+            ],
+          ),
           ElevatedButton(
               onPressed: submitData,
-              style: ElevatedButton.styleFrom(primary: Colors.white),
-              child: Text(
+              style: ElevatedButton.styleFrom(
+                  primary: Theme.of(context).primaryColor),
+              child: const Text(
                 'Salvar',
-                style: TextStyle(color: Colors.purple),
+                style: TextStyle(color: Colors.white),
               ))
         ]),
       ),
