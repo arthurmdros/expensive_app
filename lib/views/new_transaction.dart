@@ -45,54 +45,61 @@ class _NewTransactionState extends State<NewTransaction> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 5,
-      child: Container(
-        padding: EdgeInsets.all(15),
-        child: Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
-          TextField(
-            decoration: InputDecoration(labelText: 'Despesa'),
-            controller: _titleCrontoller,
-            onSubmitted: (_) => submitData(),
-            // onChanged: (value) => titleInput = value
+    return SingleChildScrollView(
+      child: Card(
+        elevation: 5,
+        child: Container(
+          padding: EdgeInsets.only(
+            top: 10,
+            left: 10,
+            right: 10,
+            bottom: MediaQuery.of(context).viewInsets.bottom + 10,
           ),
-          TextField(
-            decoration: InputDecoration(labelText: 'Valor'),
-            controller: _amountController,
-            keyboardType: TextInputType.numberWithOptions(decimal: true),
-            onSubmitted: (_) => submitData(),
-            // onChanged: (value) => amountInput = value
-          ),
-          Container(
-            height: 70,
-            child: Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    _selectedDate == null
-                        ? 'Nenhuma data selecionada!'
-                        : 'Data selecionada: ${DateFormat('dd/MM/yyyy').format(_selectedDate!)}',
-                    style: Theme.of(context).textTheme.titleSmall,
-                  ),
-                ),
-                TextButton(
-                  style: ElevatedButton.styleFrom(primary: Colors.white),
-                  onPressed: _presentDatePicker,
-                  child: Icon(Icons.calendar_today,
-                      color: Theme.of(context).primaryColor),
-                )
-              ],
+          child: Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
+            TextField(
+              decoration: InputDecoration(labelText: 'Despesa'),
+              controller: _titleCrontoller,
+              onSubmitted: (_) => submitData(),
+              // onChanged: (value) => titleInput = value
             ),
-          ),
-          ElevatedButton(
-              onPressed: submitData,
-              style: ElevatedButton.styleFrom(
-                  primary: Theme.of(context).primaryColor),
-              child: const Text(
-                'Salvar',
-                style: TextStyle(color: Colors.white),
-              ))
-        ]),
+            TextField(
+              decoration: InputDecoration(labelText: 'Valor'),
+              controller: _amountController,
+              keyboardType: TextInputType.numberWithOptions(decimal: true),
+              onSubmitted: (_) => submitData(),
+              // onChanged: (value) => amountInput = value
+            ),
+            Container(
+              height: 70,
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      _selectedDate == null
+                          ? 'Nenhuma data selecionada!'
+                          : 'Data selecionada: ${DateFormat('dd/MM/yyyy').format(_selectedDate!)}',
+                      style: Theme.of(context).textTheme.titleSmall,
+                    ),
+                  ),
+                  TextButton(
+                    style: ElevatedButton.styleFrom(primary: Colors.white),
+                    onPressed: _presentDatePicker,
+                    child: Icon(Icons.calendar_today,
+                        color: Theme.of(context).primaryColor),
+                  )
+                ],
+              ),
+            ),
+            ElevatedButton(
+                onPressed: submitData,
+                style: ElevatedButton.styleFrom(
+                    primary: Theme.of(context).primaryColor),
+                child: const Text(
+                  'Salvar',
+                  style: TextStyle(color: Colors.white),
+                ))
+          ]),
+        ),
       ),
     );
   }
