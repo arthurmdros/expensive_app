@@ -107,7 +107,7 @@ class _MyHomePageState extends State<MyHomePage> {
         });
   }
 
-  void _deleteATransaction(String id){
+  void _deleteATransaction(String id) {
     setState(() {
       _userTransactions.removeWhere((element) {
         return element.id == id;
@@ -117,22 +117,32 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final appBar = AppBar(
+      title: Text('Despesas pessoais'),
+      actions: [
+        IconButton(
+            onPressed: () => _startAddNewTransaction(context),
+            icon: Icon(Icons.add))
+      ],
+    );
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Despesas pessoais'),
-        actions: [
-          IconButton(
-              onPressed: () => _startAddNewTransaction(context),
-              icon: Icon(Icons.add))
-        ],
-      ),
+      appBar: appBar,
       body: SingleChildScrollView(
         child: Column(
             // mainAxisAlignment: MainAxisAlignment.spaceAround,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Chart(_recentTransactions),
-              TransactionList(_userTransactions, _deleteATransaction),
+              Container(
+                  height: (MediaQuery.of(context).size.height -
+                          appBar.preferredSize.height - MediaQuery.of(context).padding.top) *
+                      0.4,
+                  child: Chart(_recentTransactions)),
+              Container(
+                  height: (MediaQuery.of(context).size.height -
+                          appBar.preferredSize.height - MediaQuery.of(context).padding.top) *
+                      0.6,
+                  child:
+                      TransactionList(_userTransactions, _deleteATransaction)),
             ]),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
