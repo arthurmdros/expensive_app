@@ -1,8 +1,8 @@
-import 'dart:io';
-import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import '../views/adaptive_button.dart';
 class NewTransaction extends StatefulWidget {
   final Function callsAddTransaction;
 
@@ -92,21 +92,7 @@ class _NewTransactionState extends State<NewTransaction> {
                 ],
               ),
             ),
-            Platform.isIOS
-                ? CupertinoButton(
-                    child: const Text(
-                      'Salvar',
-                      style: TextStyle(color: Colors.purple),
-                    ),
-                    onPressed: submitData)
-                : ElevatedButton(
-                    onPressed: submitData,
-                    style: ElevatedButton.styleFrom(
-                        primary: Theme.of(context).primaryColor),
-                    child: const Text(
-                      'Salvar',
-                      style: TextStyle(color: Colors.white),
-                    ))
+            AdaptiveButton('Salvar', submitData),
           ]),
         ),
       ),
